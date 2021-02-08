@@ -1,6 +1,7 @@
 
 //declarations used in functions and event listeners
-    
+    //selects form
+ const form = document.querySelector('form');
         //field constaing basic info
 const fieldSet = document.querySelector('.basic-info');
     const name = document.getElementById('name');
@@ -25,6 +26,7 @@ const activities = document.getElementById('activities');
     
         //payment info
 const payment = document.getElementById('payment'); //what user will pay with input
+    payment.value = 'credit-card';
 const paypal = document.getElementById('paypal'); //paypal div option shown only if paypal option is selected
 const bitcoin = document.getElementById('bitcoin'); //bitcoin div option shown only if paypal option is selected
 const creditCard = document.getElementById('credit-card'); //credit card payment div for credit card information\
@@ -184,6 +186,7 @@ design.addEventListener('change', (e) => {
     if (e.target.value === 'js puns') {
         color.disabled = false;
         const options = color.querySelectorAll('option');
+        color.value = options[0].textContent;
         for (let i = 0; i < options.length; i++) {
             if (options[i].dataset.theme === 'heart js') {
                 options[i].style.display = 'none'; 
@@ -195,6 +198,7 @@ design.addEventListener('change', (e) => {
     } else {
         color.disabled = false;
         const options = color.querySelectorAll('option');
+        color.value = options[0].textContent;
         for (let i = 0; i < options.length; i++) {
             if (options[i].dataset.theme === 'js puns') {
                 options[i].style.display = 'none';
@@ -321,9 +325,8 @@ creditUserError.style.display = 'none';
  
 
 
- 
 // before submition validates username email, activities selected, and credit card information
-submit.addEventListener('click', (e) => {
+form.addEventListener('submit', (e) => {
 //displays Error if username is incorrectly submitted
     if (userValidation(name.value)) {
         name.style.border = 'solid lightgray 1px';
